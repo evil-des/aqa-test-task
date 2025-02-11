@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "aqa-test-task"
+version = "0.1.0"
+description = ""
+authors = ["evildes <renat.gogin1@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.3.4"
+pytest-playwright = "^0.7.0"
+allure-pytest = "^2.13.5"
+pydantic-settings = "^2.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
