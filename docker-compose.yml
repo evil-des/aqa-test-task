@@ -9,14 +9,21 @@ services:
     volumes:
       - allure-results:/allure-results
 
-  allure:
-    image: aqa_test_task:latest
-    command:
-      - allure serve allure-results
-    expose:
-      - 50286:50286
+  allure-results:
+    image: alpine
     volumes:
       - allure-results:/allure-results
+    command: sh -c sleep infinity
+
+  allure:
+    image: aqa_test_task:latest
+    depends_on:
+      - allure-results
+    ports:
+      - "5050:5050"
+    volumes:
+      - allure-results:/allure-results
+    command: poetry run allure serve /allure-results
 
 volumes:
   allure-results:
