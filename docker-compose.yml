@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  tests:
+    build: .
+    image: aqa_test_task:latest
+    tty: true
+    command: poetry run pytest --alluredir=allure-results
+    volumes:
+      - allure-results:/allure-results
+
+  allure:
+    image: aqa_test_task:latest
+    command:
+      - allure serve allure-results
+    expose:
+      - 50286:50286
+    volumes:
+      - allure-results:/allure-results
+
+volumes:
+  allure-results:
